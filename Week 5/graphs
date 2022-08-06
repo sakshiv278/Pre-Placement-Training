@@ -1,0 +1,44 @@
+void bfsTraversal(int b)
+{
+    
+    queue<int> q;
+    q.push(b);
+    v[b] = true;
+
+    cout << "\n\nThe BFS Traversal is:  ";
+
+    while (!q.empty())
+    {
+        int a = q.front();
+        q.pop(); 
+        for (auto j = g[a].begin(); j != g[a].end(); j++)
+        {
+            if (!v[*j])
+            {
+                v[*j] = true;
+                q.push(*j);
+            }
+        }
+        cout << a << "  ";
+    }
+}
+
+void dfs(vector<bool>& visited,int i,vector<int> adjList[]){
+	stack<int> s;
+    s.push(i);
+    while(!s.empty()){
+	    int front = s.top();
+	    s.pop();
+	    if(visited[front]==false){
+	    	visited[front] = true;
+	    	cout<<front<<" ";
+	    	for(int j=(adjList[front].size()-1);j>=0;j--){
+	    		int neighbour = adjList[front][j];
+	    		if(visited[neighbour]==false){
+	    			// push it into the stack
+	    			s.push(neighbour);
+	            }
+	        }
+	    }
+	}
+}
